@@ -1,16 +1,20 @@
 import os
 from flask import Flask, render_template, request, redirect, flash  # type: ignore
 from flask_sqlalchemy import SQLAlchemy  # type: ignore
+from flask_migrate import Migrate  
 
 app = Flask(__name__)
-app.secret_key = app.secret_key = 'a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6'
-
+app.secret_key = 'a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6'
 
 # Use the provided PostgreSQL URL for the database connection
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://tatiana_user:uOVMGxtKKY4tInMy8lLpEkX90k4oyGni@dpg-cukc2s5umphs73bc7ov0-a:5432/tatiana'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://tatiana_user:uOVMGxtKKY4tInMy8lLpEkX90k4oyGni@dpg-cukc2s5umphs73bc7ov0-a/tatiana'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-db = SQLAlchemy(app)
 
+# Initialize the database and migration tool
+db = SQLAlchemy(app)
+migrate = Migrate(app, db)  # Initialize Flask-Migrate with the app and db
+
+# Define your models
 class Project(db.Model):
     __tablename__ = 'project'
     id = db.Column(db.Integer, primary_key=True)
@@ -23,32 +27,25 @@ class ContactMessage(db.Model):
     email = db.Column(db.String(100), nullable=False)
     message = db.Column(db.String(1000), nullable=False)
 
-# Route for home
+# Routes
 @app.route('/')
 def home():
     return render_template('home.html')
 
 @app.route('/projects')
 def projects():
-    # Query the database for all projects
     project_list = Project.query.all()
-
-    # Debugging output - print the list of projects to the console
-    print(project_list)  # This will show the list of projects in the terminal
-
+    print(project_list)
     return render_template('projects.html', projects=project_list)
 
-# Route for about
 @app.route('/about')
 def about():
     return render_template('about.html')
 
-# Route for skills
 @app.route('/skills')
 def skills():
     return render_template('skills.html')
 
-# Route for contact
 @app.route('/contact', methods=['GET', 'POST'])
 def contact():
     if request.method == 'POST':
