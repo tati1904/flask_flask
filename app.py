@@ -3,10 +3,11 @@ from flask import Flask, render_template, request, redirect, flash  # type: igno
 from flask_sqlalchemy import SQLAlchemy  # type: ignore
 
 app = Flask(__name__)
-app.secret_key = 'your_secret_key'  # Change this to a strong secret key for production
+app.secret_key = app.secret_key = 'a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6'
+
 
 # Use the provided PostgreSQL URL for the database connection
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://tatiana_user:uOVMGxtKKY4tInMy8lLpEkX90k4oyGni@dpg-cukc2s5umphs73bc7ov0-a/tatiana'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://tatiana_user:uOVMGxtKKY4tInMy8lLpEkX90k4oyGni@dpg-cukc2s5umphs73bc7ov0-a:5432/tatiana'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
