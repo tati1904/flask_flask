@@ -1,14 +1,17 @@
-from flask import Flask, render_template, request, redirect, flash # type: ignore
-from flask_sqlalchemy import SQLAlchemy # type: ignore
+import os
+from flask import Flask, render_template, request, redirect, flash  # type: ignore
+from flask_sqlalchemy import SQLAlchemy  # type: ignore
 
 app = Flask(__name__)
-app.secret_key = 'your_secret_key'  
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:Erika2016@localhost:5432/flower_shop_db'
+app.secret_key = 'your_secret_key'  # Change this to a strong secret key for production
+
+# Use the provided PostgreSQL URL for the database connection
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://tatiana_user:uOVMGxtKKY4tInMy8lLpEkX90k4oyGni@dpg-cukc2s5umphs73bc7ov0-a/tatiana'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
 class Project(db.Model):
-    __tablename__ = 'project'  
+    __tablename__ = 'project'
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False)
     description = db.Column(db.String(500), nullable=False)
@@ -32,10 +35,7 @@ def projects():
     # Debugging output - print the list of projects to the console
     print(project_list)  # This will show the list of projects in the terminal
 
-    
     return render_template('projects.html', projects=project_list)
-
-
 
 # Route for about
 @app.route('/about')
@@ -54,7 +54,7 @@ def contact():
         name = request.form['name']
         email = request.form['email']
         message = request.form['message']
-        
+
         if not name or not email or not message:
             flash("All fields are required!", "danger")
         else:
@@ -67,7 +67,7 @@ def contact():
             except Exception as e:
                 db.session.rollback()
                 flash(f"Error sending message: {e}", "danger")
-    
+
     return render_template('contact.html')
 
 if __name__ == '__main__':
