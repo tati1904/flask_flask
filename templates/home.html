@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section id="home">
+    <h1><p>Welcome to my portfolio! 😊</p>
+    </h1>
+    <p>This is where you can explore my projects, skills, and much more!</p>
+    <button onclick="scrollToSection('projects')">See My Projects</button>
+
+    <!-- Gallery Section -->
+    <div class="gallery">
+        <div class="gallery-item">
+            <img src="{{ url_for('static', filename='images/flowers1.jpg') }}" alt="Project 1">
+            <p>Website Development</p>
+        </div>
+        <div class="gallery-item">
+            <img src="{{ url_for('static', filename='images/flowers3.jpg') }}" alt="Project 2">
+            <p>Mobile App Development</p>
+        </div>
+        <div class="gallery-item">
+            <img src="{{ url_for('static', filename='images/flowers4.jpg') }}" alt="Project 3">
+            <p>SEO Optimization</p>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
