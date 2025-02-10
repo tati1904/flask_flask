@@ -5,6 +5,8 @@ from flask_migrate import Migrate
 
 app = Flask(__name__)
 
+print("DATABASE_URL:", os.environ.get('DATABASE_URL'))
+
 # Use the environment variable DATABASE_URL for Render (or local fallback)
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', 'postgresql://flower_shop_o0iu_user:ijzWwaTIaGPzGmkM6vp0Nbj96iSYMLgk@dpg-cukgktbtq21c73e75k80-a.oregon-postgres.render.com/flower_shop_o0iu')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
