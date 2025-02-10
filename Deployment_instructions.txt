@@ -1,0 +1,28 @@
+# Deployment Instructions for My Flask App
+
+## Project Links
+- **GitHub Repository:** https://github.com/tati1904/flask_flask.git
+- **Live Web App on Render:** https://flask-flask.onrender.com
+---
+
+## Steps to Deploy the Web App on render
+
+
+## **Project Overview**
+This project is a Flask-based web application deployed on **Render.com** with a PostgreSQL database. The following instructions outline the steps to deploy and access the application.
+
+---
+
+## **1. Setting Up the Deployment on Render**
+
+### **Step 1: Create a Render Account**
+1. Go to [https://render.com](https://render.com) and create an account.
+2. Navigate to the **Dashboard**.
+
+### **Step 2: Deploy the Web Service**
+1. Click **"New" > "Web Service"**.
+2. Connect your **GitHub repository** containing the project files.
+3. Choose the **Python** runtime.
+4. Set the **Build Command** to:
+   ```sh
+   pip install -r requirements.txt
