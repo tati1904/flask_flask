@@ -77,17 +77,43 @@ footer p {
 }
 
 /* Button Styling */
-button {
+button,
+a.btn {
     background-color: #333;
     color: white;
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    text-decoration: none; /* Remove underline from links */
+    display: inline-block;
+    margin: 5px 0;
 }
 
 button:hover {
     background-color: #555;
+}
+
+/* DELETE button styling */
+button.delete-button {
+    background-color: #f44336; /* Red color for DELETE */
+    color: white;
+}
+
+/* EDIT button styling */
+button.edit-button {
+    background-color: #ff9800; /* Orange color for EDIT */
+    color: white;
+}
+
+/* General Button Size Consistency */
+button.delete-button,
+button.edit-button {
+    font-size: 14px;   /* Ensures buttons are of equal size */
+    padding: 10px 20px; /* Ensures equal padding */
+    width: auto;       /* Makes buttons adjust based on content */
+    text-align: center; /* Centers text */
+    white-space: nowrap; /* Prevents text from wrapping */
 }
 
 /* Form Inputs */

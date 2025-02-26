@@ -1,0 +1,22 @@
+<!-- templates/edit_project.html -->
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Edit Project</h1>
+  
+  <form method="POST">
+    <div>
+      <label for="name">Project Name:</label>
+      <input type="text" id="name" name="name" value="{{ project.name }}" required>
+    </div>
+    
+    <div>
+      <label for="description">Project Description:</label>
+      <textarea id="description" name="description" required>{{ project.description }}</textarea>
+    </div>
+    
+    <button type="submit">Update Project</button>
+  </form>
+  
+  <a href="{{ url_for('projects') }}">Back to Projects</a>
+{% endblock %}
